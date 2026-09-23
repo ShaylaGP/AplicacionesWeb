@@ -7,6 +7,5 @@ Repositorio con las memorias de las prácticas del modulo de Aplicaciones Web
 ## Índice de prácticas
 
 | Nº | Práctica                          | Memoria                                                    |
-|                                                                                                     |
 |----|-----------------------------------| -----------------------------------------------------------|
-| 1  | Introducción a Github y Markdown  | 
+| 1  | Introducción a Github y Markdown  |                                                            |               
