@@ -18,7 +18,7 @@
      [Memoria de la práctica] (./practica01/memoria.md)
 
      ![Texto alternativo](ruta-o-url-de-la-imagen.png)
-     ![Captura del resultado final] (./imagenes/resultadi.png)
+     ![Captura del resultado final] (./imagenes/resultado.png)
 
      Para centrar un elemento se usa la propiedad `text-align`.
 
