@@ -1,7 +1,8 @@
 # AplicacionesWeb Prácticas
-Repositorio con las memorias de las prácticas del modulo de Aplicaciones Web
+Repositorio con las memorias de las prácticas del modulo de ***Aplicaciones Web***
 
 **Alumno:** Shayla García Pozo
+
 **Curso:** 2º SMR
 
 ## Índice de prácticas
