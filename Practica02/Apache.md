@@ -9,7 +9,7 @@
   > Comprobación de la versión instalada
 
  **_Pregunta: ¿Qué paquetes se han instalado como dependencias?_** <br/>
- 👉 
+ 👉 Automáticamente se nos instalan: libfwupd2 y libgusb2
  
 # Apartado 3
  ## **Comprobación del sistema**
