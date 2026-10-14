@@ -157,3 +157,42 @@
 > ``sudo apache2ctl configtest`` </br>
 > ``sudo systemctl reload apache2`` </br>
 > ``apache2ctl -S``
+
+## _Resolución de nombres_
+![nombres](./Imagenes/24.png)
+
+## _Pruebas_
+![curl](./Imagenes/25.png)
+> `` curl http://sitio1.local`` </br>
+> ``curl http://sitio2.local`` </br>
+![apachectl](./Imagenes/26.png)
+
+   **_Pregunta: ¿Qué diferencia hay entre virtual hosts basados en nombre y basados en IP?¿Cuál has usado?_** <br/>
+ 👉 La diferencia es que cuando se basa en nombre  varios sitios comparten la misma IP, diferenciandolos por nombre pero cuando se basa en IP pueden tener el mismo nombre que los diferencia por IP. En nuestro caso hemos usado virtual hosts basados en nombre.
+
+# Apartado 9 
+_Apache se ejecuta con el usuario ``www-data``._
+![greps](./Imagenes/27.png)
+> ``ps aux | grep apache2`` </br>
+> ``grep -E "APACHE_RUN_(USER|GROUP)" /etc/apache2/envvars`` </br>
+> ``ls -ld /var/www/sitio1 /var/www/sitio1/index.html`` </br>
+
+_Aplica una política de permisos_
+> ``sudo chown -R www-data:www-data /var/www/sitio1`` </br>
+> ``sudo find /var/www/sitio1 -type d -exec chmod 755 {} \;`` </br>
+> ``sudo find /var/www/sitio1 -type f -exec chmod 644 {} \;`` </br>
+_Quita los permisos a index.html
+![permisos](./Imagenes/28.png)
+![permisos](./Imagenes/29.png)
+> _Error.log_
+
+   **_Pregunta: ¿Qué significa ``755`` y ``644``?_** <br/>
+ 👉 _755_ Nos permite leer y ejecutar a todos, escribir solo al propietario. </br>
+ 👉 _644_ Nos permite leer a todos pero solo el propietario puede escribir
+
+   **_Pregunta: ¿Por qué nunca se deben usar permisos 777 en un servidor web?_** <br/>
+ 👉 Porque le estariamos dando permisos de escritura a todos
+
+ 
+   **_Pregunta: ¿Por qué el contenido web no debe pertenecer a root ni ser escribible por todos?_** <br/>
+ 👉 Por qué si todos tuviesen acceso al servidor podrían hacer cambios sin conocimiento o incluso borrar cosas que son imprescindibles.
