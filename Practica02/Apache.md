@@ -20,16 +20,16 @@
 
   ## _Puertos en escucha_
   ![Puertos de escucha](./Imagenes/4.png)
- (_sudo ss -tulpn | grep apache2_)
+ >``sudo ss -tulpn | grep apache2``
 
   ## _Prueba desde el terminal y desde el navegador_
   ![Curl](./Imagenes/5.png)
- >(_curl -I http://localhost_) & Página por defecto en el navegador
+ >``curl -I http://localhost`` & Página por defecto en el navegador
 
   ## _Firewall_
   ![Firewall](./Imagenes/6.png)
-   > (_sudo ufw status_)<br/>
-   > (_sudo ufw allow 'Apache'_)
+   > ``sudo ufw status``<br/>
+   > ``sudo ufw allow 'Apache'``
 
    **_Pregunta: ¿Qué diferencia hay entre los perfiles Apache, Apache Full y Apache Secure?_** <br/>
  👉 Se diferencian por los puertos 
@@ -55,7 +55,7 @@
 
 # Apartado 5
   ## _Exploración de la estructura de configuración_
-> _ls -l /etc/apache2/
+> ``ls -l /etc/apache2/``
 
  | **Ruta*                               | **Descripción**                                 |
  |---------------------------------------|-------------------------------------------------|
@@ -72,7 +72,7 @@
 
    ## _Comprobación de los enlaces simbólicos de sites-enable_
   ![Contenido /etc/apache2/](./Imagenes/7.png)
-  > _ls -l -7etc-7apache2/sites-enabled/_
+  > ``ls -l -7etc-7apache2/sites-enabled/``
 
    **_Pregunta: ¿Por qué Apache usa los enlaces simbólicos entre los directorios *-available y *-enabled?_** <br/>
  👉 De esta forma se evitan versiones desactualizadas  y fácilitan la la baja temporal del servicio.
@@ -80,6 +80,80 @@
 # Apartado 6
   ## _Hacer copias de seguridad_
   ![Copia de seguridad](./Imagenes/8.png)
-  > _sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak_
+  > ``sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak``
   ## _Cambiar la página de inicio_
-  > _echo "< h1 >Servidor de TU NOMBRE < /h1 >" | sudo tee /var/www/html/index.html_
+  > ``echo "<h1>Servidor de TU NOMBRE </h1>" | sudo tee /var/www/html/index.html``
+  ![Cambio página de inicio](./Imagenes/9.png)
+  ## _Cambiar el puerto de escucha_
+  ![Cambio de puerto](./Imagenes/10.png)
+  > ``sudo nano /etc/apache2/ports.conf`` </br>
+  ![Cambio de puerto2](./Imagenes/11.png)
+  > ``sudo nano /etc/apache2/sites-available/000-default.conf``
+  ![Comprobaciones](./Imagenes/12.png)
+  > ``sudo apache2ctl configtest`` </br>
+  > ``sudo systemctl reload apache2``
+  > ``curl -I http://localhost:8080``
+  ## _Definir el nombre del servidor_
+  ![Definir el nombre del servidor](./Imagenes/13.png)
+  > ``echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.conf`` </br>
+  > ``sudo a2enconf servername``
+  > ``sudo systemctl reload apache2``
+  ## _Cambiar el correo del administrador_
+  ![Cambiar correo](./Imagenes/14.png)
+  ![ERROR](./Imagenes/15.png)
+
+# Apartado 7
+  ![modulos](./Imagenes/16.png)
+> ``apache2ctl -M`` </br>
+  ![ls](./Imagenes/17.png)
+> ``ls /etc/apache2/mods-available/``
+
+  ##  _Activa y comprueba módulos habituales_
+  ![Compr. modulos](./Imagenes/18.png)
+  > ``sudo a2enmod rewrite`` </br>
+  > ``sudo a2enmod headers`` </br>
+  > ``sudo a2enmod ssl`` </br>
+  > ``sudo systemctl restart apache2`` </br>
+  > ``apache2ctl -M | grep -E "rewrite|headers|ssl"``
+
+ | **Módulo**                            | **Función**                                     |
+ |---------------------------------------|-------------------------------------------------|
+ | _mod_rewrite_                         |  Reescritura de URL                             | 
+ | _mod_headers_                         |  Manipulación de cabeceras HTTP                 |
+ | _mod ssl_                             |  Soporte HTTPS                                  | 
+ | _mod_dir_                             |  Gestión de ficheros índice (index.html)        |
+ | _mod_alias_                           |  Redirecciones y alias de rutas                 |
+ | _mod_auth_basic_                      |  Autenticación básica                           |
+ | _mod_status_                          |  Página de estado del servidor                  |
+ | _mod_php / PHP-FPM_                   |  Ejecución de PHP (opcional)                    |
+
+  ## _Desactiva un módulo y comprueba el efecto_
+  ![Desactiva un módulo](./Imagenes/19.png)
+  > ``sudo a2dismod status`` </br>
+  > ``sudo systemctl restart apache2``
+
+   **_Pregunta: ¿Qué ocurre si desactivas un módulo del que depende otro?_** <br/>
+ 👉 El servidor fallará al iniciar o al reiniciar y mostrará un error de configuración.
+
+# Apartado 8
+> Se van a crear dos sitios: ``sitio1.local`` y ``sitio2.local``
+
+## _Crear los directorios y páginas_
+![Directorios y pág](./Imagenes/20.png)
+> ``sudo mkdir -p /var/www/sitio1 /var/www/sitio2`` </br>
+> ``echo "<h1>Bienvenido a SITIO 1</h1>" | sudo tee /var/www/sitio1/index.html`` </br>
+> ``echo "<h1>Bienvenido a SITIO 2</h1>" | sudo tee /var/www/sitio2/index.html`` </br>
+
+## _Crear los ficheros de configuración_
+![pag1](./Imagenes/21.png)
+> ``sudo nano /etc/apache2/sites-available/sitio1.conf``
+![Pag2](./Imagenes/22.png)
+> ``sudo nano /etc/apache2/sites-available/sitio1.conf``
+
+## _Activar los sitios y desactivar el de por defecto_
+![sitios](./Imagenes/23.png)
+> `` sudo a2ensite sitio1.conf sitio2.conf`` </br>
+> ``sudo a2dissite 000-default.conf`` </br>
+> ``sudo apache2ctl configtest`` </br>
+> ``sudo systemctl reload apache2`` </br>
+> ``apache2ctl -S``
