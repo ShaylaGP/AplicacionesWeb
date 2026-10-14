@@ -1,7 +1,8 @@
 # Apartado 1  
   ## **Preparación del sistema**<br/>
    ![Actualizamos Ubuntu y comprobamos la versión](./Imagenes/1.png)
-  > Comprobación de la versión del sistema (_lsb_release -a_)
+  > Comprobación de la versión del sistema </br>
+  ```lsb_release -a```
 
 # Apartado 2
   ## **Instlación de Apache**
@@ -15,22 +16,23 @@
  ## **Comprobación del sistema**
   ### _Estado del servicio_
    ![Estado del servicio](./Imagenes/3.png)
-  >(_sudo systemctl status apache2_)
+  >``sudo systemctl status apache2``
 
   ## _Puertos en escucha_
   ![Puertos de escucha](./Imagenes/4.png)
  (_sudo ss -tulpn | grep apache2_)
 
   ## _Prueba desde el terminal y desde el navegador_
+  ![Curl](./Imagenes/5.png)
  >(_curl -I http://localhost_) & Página por defecto en el navegador
 
   ## _Firewall_
-  ![Firewall](./Imagenes/5.png)
+  ![Firewall](./Imagenes/6.png)
    > (_sudo ufw status_)<br/>
    > (_sudo ufw allow 'Apache'_)
 
    **_Pregunta: ¿Qué diferencia hay entre los perfiles Apache, Apache Full y Apache Secure?_** <br/>
- 👉 
+ 👉 Se diferencian por los puertos 
 
  # Apartado 4
  | **Comando**                           | **Función**                                     |
@@ -49,7 +51,7 @@
  | _a2enconf / a2disconf_                |  Activa / Desactiva fragmentos de configuración |
 
    **_Pregunta: ¿Cuándo conviene usar ***reload*** en lugar de ***restart***?_** <br/>
- 👉 
+ 👉 _Reload_ conviene usarlo cuando no queremos cortar las conexiones, es decir, mantener el servidor funcionando
 
 # Apartado 5
   ## _Exploración de la estructura de configuración_
@@ -57,26 +59,27 @@
 
  | **Ruta*                               | **Descripción**                                 |
  |---------------------------------------|-------------------------------------------------|
- | _/etc/apache2/apache2.conf_           |  EXPLICACIÓN                                    | 
- | _/etc/apache2/ports.conf_             |  EXPLICACIÓN                                    |
- | _/etc/apache2/sites-available/_       |  EXPLICACIÓN                                    | 
- | _/etc/apache2/sites-enabled/_         |  EXPLICACIÓN                                    |
- | _/etc/apache2/mods-available/ y mods-enabled/_  |  EXPLICACIÓN                          |
- | /etc/apache2/conf-available/ y conf-enabled/_      |  EXPLICACIÓN                       |
- | _/etc/apache2/envvars_                |  EXPLICACIÓN                                    |
- | _/var/www/html/_                      |  EXPLICACIÓN                                    |
- | _/var/log/apache2/access.log_         |  EXPLICACIÓN                                    |
- | _/var/log/apache2/error.log_          |  EXPLICACIÓN                                    |
+ | _/etc/apache2/apache2.conf_           |  En este fichero se realizan las configuraciones de apache| 
+ | _/etc/apache2/ports.conf_             |  En este fichero se hacen las configuraciones de los puertos por los que Apache va a escuchar|
+ | _/etc/apache2/sites-available/_       |  Aquí se almacenan todos los sitios disponibles, activos e inactivos| 
+ | _/etc/apache2/sites-enabled/_         |  En este solo se muestran los sitios activos      |
+ | _/etc/apache2/mods-available/ y mods-enabled/_  |  Aquí encontramos los modulos disponibles y en el segundo encontramos los habilitados|
+ | /etc/apache2/conf-available/ y conf-enabled/_      |  Aquí podemos revisar la configuración disponible y en el segundo la habilitada |
+ | _/etc/apache2/envvars_                |  Aquí revisamos las variables                     |
+ | _/var/www/html/_                      |  Se trata del directorio raiz|
+ | _/var/log/apache2/access.log_         |  Aquí se registran los accesos |
+ | _/var/log/apache2/error.log_          |  Aquí se guardan los errores|
 
    ## _Comprobación de los enlaces simbólicos de sites-enable_
-  ![Contenido /etc/apache2/](./Imagenes/5.png)
+  ![Contenido /etc/apache2/](./Imagenes/7.png)
   > _ls -l -7etc-7apache2/sites-enabled/_
 
    **_Pregunta: ¿Por qué Apache usa los enlaces simbólicos entre los directorios *-available y *-enabled?_** <br/>
- 👉 
+ 👉 De esta forma se evitan versiones desactualizadas  y fácilitan la la baja temporal del servicio.
 
 # Apartado 6
   ## _Hacer copias de seguridad_
+  ![Copia de seguridad](./Imagenes/8.png)
   > _sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak_
   ## _Cambiar la página de inicio_
   > _echo "< h1 >Servidor de TU NOMBRE < /h1 >" | sudo tee /var/www/html/index.html_
