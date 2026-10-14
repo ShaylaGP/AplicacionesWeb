@@ -18,13 +18,14 @@
   >(_sudo systemctl status apache2_)
 
   ## _Puertos en escucha_
+  ![Puertos de escucha](./Imagenes/4.png)
  (_sudo ss -tulpn | grep apache2_)
 
   ## _Prueba desde el terminal y desde el navegador_
  >(_curl -I http://localhost_) & Página por defecto en el navegador
 
   ## _Firewall_
-  ![Firewall](./Imagenes/4.png)
+  ![Firewall](./Imagenes/5.png)
    > (_sudo ufw status_)<br/>
    > (_sudo ufw allow 'Apache'_)
 
