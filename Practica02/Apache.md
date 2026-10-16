@@ -197,7 +197,7 @@ _Quita los permisos a index.html
    **_Pregunta: ¿Por qué el contenido web no debe pertenecer a root ni ser escribible por todos?_** <br/>
  👉 Por qué si todos tuviesen acceso al servidor podrían hacer cambios sin conocimiento o incluso borrar cosas que son imprescindibles.
 
- #CONCLUSIONES
+ # CONCLUSIONES 
  En esta práctica hemos instalado y configurado un servidor web Apache2.</br>
  Hemos visto que estos servidores pueden alojar diferenetes sitios. También, permiten la gestión de permisos sobre el contenido como medida básica de seguridad. </br>
 Por otro lado, hemos visto comandos que pueden usarse para el mantenimiento de los servicios y la modificación de los mismos. 
