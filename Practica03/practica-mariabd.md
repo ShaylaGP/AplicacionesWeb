@@ -14,9 +14,10 @@
   ## **Estado del servicio**
    ![Versión](./Imagenes/3.png)
   > ``sudo systenctl status mariadb``
+   ![Base de datos](./Imagenes/4.png)
   >``systemctl is-enable mariadb``
   ## **Entrar en la base de datos**
-   ![Base de datos](./Imagenes/4.png)
+   ![Base de datos](./Imagenes/5.png)
    > ``sudo mariadb``
 
 # Apartado 4
