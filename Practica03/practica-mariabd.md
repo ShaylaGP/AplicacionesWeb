@@ -30,3 +30,7 @@
  | _sudo systemctl enable apache2_       |  Arranque automático al iniciar el sistema      |
 
 # Apartado 5
+  ## Error al parar MariaDB
++ jno`ñk-,m
+ **_Pregunta: ¿Qué paquetes se han instalado como dependencias?_** <br/>
+ 👉 Automáticamente se nos instalan: libfwupd2 y libgusb2
