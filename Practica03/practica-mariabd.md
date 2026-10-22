@@ -28,3 +28,5 @@
  | _sudo systemctl restart mariadb_      |  Reinicia                                       | 
  | _sudo systemctl status mariadb_       |  Recarga la configuración sin cortar conexiones |
  | _sudo systemctl enable apache2_       |  Arranque automático al iniciar el sistema      |
+
+# Apartado 5
