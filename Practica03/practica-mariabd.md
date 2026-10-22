@@ -21,3 +21,10 @@
    > ``sudo mariadb``
 
 # Apartado 4
+ | **Comando**                           | **Función**                                     |
+ |---------------------------------------|-------------------------------------------------|
+ | _sudo systemctl start mariadb_        |  Inicia el servicio                             | 
+ | _sudo systemctl stop mariadb_         |  Detiene el servicio                            |
+ | _sudo systemctl restart mariadb_      |  Reinicia                                       | 
+ | _sudo systemctl status mariadb_       |  Recarga la configuración sin cortar conexiones |
+ | _sudo systemctl enable apache2_       |  Arranque automático al iniciar el sistema      |
