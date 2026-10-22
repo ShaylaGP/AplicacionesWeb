@@ -30,7 +30,22 @@
  | _sudo systemctl enable apache2_       |  Arranque automático al iniciar el sistema      |
 
 # Apartado 5
-  ## Error al parar MariaDB
-+ jno`ñk-,m
- **_Pregunta: ¿Qué paquetes se han instalado como dependencias?_** <br/>
- 👉 Automáticamente se nos instalan: libfwupd2 y libgusb2
+  ## **Error al parar MariaDB**
+  ![Base de datos](./Imagenes/6.png)
+     ![Base de datos](./Imagenes/7.png) </br>
+ **_Pregunta:  Si WordPress no pudiera conectar con la base de datos, ¿qué dos comandos de este apartado usarías
+para saber si el problema es que MariaDB está parado?_** <br/>
+ 👉 Systemctl is-active mariabd
+
+ # Apartado 7 
+ ## **Instalación de PHP y las piezas que WordPress necesita**
+   ![PHP](./Imagenes/8.png)
+  ## **Comprobación PHP**
+   ![mpm](./Imagenes/9.png)
+  ## **Comprobación conexión MariaDB**
+   ![Comp maria](./Imagenes/10.png)
+  ## **Comprobación de que Apache ejecuta PHP**
+  ![MARIADB](./Imagenes/11.png)
+
+   **_Pregunta:  ¿Por qué es peligroso dejar info.php en un servidor real? ¿Para qué sirve el paquete php-mysql? ?_** <br/>
+ 👉 Estarías dando los datos necesarios para un acceso indeseado.
