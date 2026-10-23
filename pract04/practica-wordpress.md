@@ -25,4 +25,5 @@
  **_Pregunta: ¿Qué diferencia hay entre desactivar un sitio con a2issite y borrar sus ficheros? ¿Por qué ahora ves la página por defecto de Apache y antes veías sitio1?_** <br/>
  👉 Si borro los ficheros no podré volver a utilizarlos mientras que si los desactivo se quedan guardados para poder usarse. Respecto a la página de defecto Apache la veo porque no tiene página establecida
 
+ # Apartado 3
  
