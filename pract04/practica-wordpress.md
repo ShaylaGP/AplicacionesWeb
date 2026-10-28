@@ -90,9 +90,14 @@
 
  # Apartado 9
   
-   ![comprobación](./Imagenes/22.png)
+   ![Error](./Imagenes/22.png)
    > ERROR
 
 
-   ![comprobación](./Imagenes/23.png)
+   ![Solución](./Imagenes/23.png)
    > Resolución
+
+# Apartado 10
+
+   ![comprobación](./Imagenes/24.png)
+  > Comprobación final
